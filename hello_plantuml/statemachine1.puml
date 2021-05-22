@@ -1,0 +1,16 @@
+@startuml
+'scale 350 width
+[*] --> EngineOFF
+
+state EngineOFF{
+   [*] --> Idle
+    Idle --> EngineON : Ignition key ON
+
+}
+state EngineON {
+    [*] --> Stop
+    Stop --> Drive : Press gas
+    Drive --> Stop : Press brake
+    Stop --> EngineOFF : Ignition key OFF
+}
+@enduml

@@ -1,0 +1,8 @@
+.DS_Store
+*.dSYM
+*.app
+*.o
+*.stash
+cmake-build-debug/
+build/
+.idea/

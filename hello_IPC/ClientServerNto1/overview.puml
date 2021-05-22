@@ -1,0 +1,14 @@
+@startuml
+(*) --> "Put MasterFD into readfs"
+'Find a way to represetnt a while loop
+--> "select()"
+If "MasterFD activated?" then
+--> [Yes, new client] "comm_fd = accept()"
+--> "Add comm_fd to readfs"
+else
+--> [No, received data from esisting client] "Identify client comm_fd"
+--> "Service the client"
+--> "If server closes the client ocnnection, remove comm_fd from readfs"
+
+--> (*)
+@enduml

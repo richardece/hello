@@ -1,0 +1,18 @@
+'Press Alt + D to preview
+
+@startuml
+header My first UML
+footer Page %page% of %lastpage%
+title Sequence Diagram
+scale 1
+
+
+
+Alice -> Bob : Authentication request
+Alice <- Bob : Authentication response
+
+Alice --> Bob : Another Authentication request
+Alice <-- Bob : Another Authentication response
+
+
+@enduml

@@ -1,0 +1,52 @@
+Signal handling
+1. Default
+    Process executes the default action of the signal, for example when SIGTERM is received,
+    process is terminated by default.
+2. Custom
+    Process executes a a customized function called signal handler routine. 
+    use the signal() function to link the signal to the handler.
+    Signal handler will be executed with highest priority.
+3. Ignore
+    Process ignores the signal
+
+Popular Linux signals
+1. SIGNINT - interrupt signal
+    Sent by the kernel when Ctrl+C is is pressed. Default behavior is to terminate the process,
+    but the there is an option to process a signal handler routine.
+2. SIGUSR1 and SIGUSR2 - user defined signal
+    Sent by one process to another process.
+3. SIGKILL 
+    Sent by the kernel when "kill -9" is invoked on a pid. The signal cannot be caught by the process (cannot execute signal handler routine).
+    The process will terminate immediately.
+    To determine the pid, use command
+    ps -aux | grep process_name
+4. SIGABORT
+    Raised by the process itself by calling "abort()". The signal cannot be caught by the process (cannot execute signal handler routine).
+    The process will terminate immediately.
+5. SIGTERM
+    Sent by the kernel when "kill" is invoked on a pid. Default action will terminate the process.
+    Unlike SIGKILL, signal can be caught by the process to execute a signal handler routine.
+6. SIGSEGV - segmentation fault
+    Raised by the kernel when illegal memory is referenced.
+7. SIGCHILD - 
+    When a child terminates, the signal is sent to the parent process.
+    The parent will execute wait() to read child status.
+    Need to understand fork() first.
+
+Ways to generate signals
+1. Raise signal from kernel to process (ctrl+C)
+2. Send signal from one process to itself (raise())
+You can specify any signal number.
+3. Send signal from one process to another (kill())
+You can specify any signal number.
+
+
+Example programs
+1. ctrl_c.c
+    Press Ctrl+C to test SIGINT.
+    Or call abort() to test SIGABORT.
+2. raise.c
+    Send SIGINT to itself by calling raise()
+3. kill_recv.c and kill_sender.c
+    Send SIGUSR1 from kill_sender to kill_recv via kill()
+    Can only use SIGUSR1 or SIGUSR2

@@ -1,0 +1,25 @@
+@startuml
+' Cannot display vertical stack
+top to bottom direction 
+
+package "Applications" as P1{
+    [App1] 
+    [App2]
+}
+package "System call Interface" as P2{
+    [socket()] 
+    [accept()]
+    [connect()]
+    [select()]
+}
+package "OS" as P3 { 
+
+} 
+package "Hardware" as P4 { 
+
+}
+
+P1 -down--> P2
+P2 -down--> P3
+P3 -down--> P4
+@enduml

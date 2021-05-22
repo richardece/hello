@@ -1,0 +1,18 @@
+@startuml
+
+Server -> Server : socket()
+Client -> Client : socket()
+Server -> Server : bind()
+Server -> Server : listen()
+Server -> Server : accept()
+note left : wait for connection (blocked)
+Client -> Server : connect() Establish connection
+note right: connect(), blocked
+Client -> Server : send_request()
+note right: send()
+note left: receive()
+Server -> Server : process_request()
+Server -> Client : send_response()
+note left: send()
+note right: receive()
+@enduml
