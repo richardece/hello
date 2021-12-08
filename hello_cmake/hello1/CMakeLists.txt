@@ -20,18 +20,21 @@ set(CMAKE_CXX_FLAGS_DEBUG   "-O0 -g")
 set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
 
 # Cmake will place the binary and library to the path specified
-# set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_BINARY_DIR}/bin)
-# set(LIBRARY_OUTPUT_PATH     ${CMAKE_BINARY_DIR}/lib)
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/dbg/bin)
-    set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/dbg/lib)
+  # Looks like this 2 styles work the same way
+    #set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/dbg/bin)
+    #set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/dbg/lib)
+    set(EXECUTABLE_OUTPUT_PATH  ${CMAKE_BINARY_DIR}/dbg/bin)
+    set(LIBRARY_OUTPUT_PATH     ${CMAKE_BINARY_DIR}/dbg/lib)
 else()
     set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/rel/bin)
     set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/rel/lib)
 endif()
 
+# Executeable is "hello"
 add_executable(hello helloworld.cpp)
 
+# How to print variables
 message("CMAKE_BINARY_DIR:      ${CMAKE_BINARY_DIR}")
 message("CMAKE_HOME_DIRECTORY:  ${CMAKE_HOME_DIRECTORY}")
 message("CMAKE_SOURCE_DIR:      ${CMAKE_SOURCE_DIR}")
