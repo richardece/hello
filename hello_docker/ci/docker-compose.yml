@@ -1,0 +1,37 @@
+version: "3.8"
+
+#HOW TO USE:
+# docker-compose up
+
+services:
+
+  jenkins:
+    privileged: true
+    user: root
+    build:
+      dockerfile: Dockerfile
+      context: ./jenkins
+    container_name: jenkins-local
+    ports:
+     - 8083:8080							# host-port:container-port
+     - 50003:50000
+    volumes:
+     - /var/jenkins_home:/var/jenkins_home        # data persistency
+     - /var/run/docker.sock:/var/run/docker.sock  # allows to use docker inside jenkins
+     - /usr/bin/docker:/usr/bin/docker
+    command: tail -f /dev/null	# needed so that jenkins will not exit immediately
+
+  artifactory:
+    build:
+      dockerfile: Dockerfile
+      context: ./artifactory
+    container_name: artifactory-local
+    ports:
+     - "8082:8082"
+  # builder
+
+#volumes:
+#  ...
+#networks:
+#  ...
+
