@@ -1,0 +1,22 @@
+Artifactory
+$: docker run -it  -d -p 8082:8082 --name artifactory docker.bintray.io/jfrog/artifactory-cpp-ce:latest
+Note: remember that new artifactory is now using port 8082. Old one is using port 8081.
+It can even be accessed from mac host.
+
+Jenkins
+$: docker container run -it -d \
+    -p 8080:8080 \
+    -v /var/jenkins_home:/var/jenkins_home \
+    --name jenkins-local \
+    jenkins/jenkins:lts
+
+docker run --rm -it -d \
+    -p 8083:8080 \
+    -v /var/jenkins_home:/var/jenkins_home \
+    -v /var/run/docker.sock:/var/run/docker.sock \
+    -v /usr/bin/docker:/usr/bin/docker \
+    jenkins/jenkins:lts
+
+Note:
+Jenkins cannot be accessed if you run it inside docker compose.
+Need to manually install Jenkins and run from there.
